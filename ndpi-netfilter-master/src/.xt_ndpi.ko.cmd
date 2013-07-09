@@ -1,0 +1,1 @@
+cmd_/usr/src/linux-3.6.11/ndpi-netfilter-master/src/xt_ndpi.ko := ld -r -m elf_x86_64 -T /usr/src/linux-3.6.11/scripts/module-common.lds --build-id  -o /usr/src/linux-3.6.11/ndpi-netfilter-master/src/xt_ndpi.ko /usr/src/linux-3.6.11/ndpi-netfilter-master/src/xt_ndpi.o /usr/src/linux-3.6.11/ndpi-netfilter-master/src/xt_ndpi.mod.o

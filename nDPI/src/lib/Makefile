@@ -50,8 +50,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-build_triplet = i686-pc-linux-gnu
-host_triplet = i686-pc-linux-gnu
+build_triplet = x86_64-unknown-linux-gnu
+host_triplet = x86_64-unknown-linux-gnu
 subdir = src/lib
 DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
@@ -142,7 +142,7 @@ am_libndpi_la_OBJECTS = libndpi_la-ndpi_main.lo libndpi_la-afp.lo \
 	libndpi_la-citrix.lo libndpi_la-dcerpc.lo \
 	libndpi_la-netflow.lo libndpi_la-sflow.lo libndpi_la-radius.lo \
 	libndpi_la-teamviewer.lo libndpi_la-lotus_notes.lo \
-	libndpi_la-gtp.lo
+	libndpi_la-gtp.lo libndpi_la-oracle.lo libndpi_la-ptt.lo
 libndpi_la_OBJECTS = $(am_libndpi_la_OBJECTS)
 libndpi_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -171,12 +171,12 @@ HEADERS = $(noinst_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/massar/nDPI/missing --run aclocal-1.11
+ACLOCAL = ${SHELL} /home/bobo/nDPI/missing --run aclocal-1.11
 AMTAR = $${TAR-tar}
 AR = ar
-AUTOCONF = ${SHELL} /home/massar/nDPI/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/massar/nDPI/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/massar/nDPI/missing --run automake-1.11
+AUTOCONF = ${SHELL} /home/bobo/nDPI/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/bobo/nDPI/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/bobo/nDPI/missing --run automake-1.11
 AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -201,7 +201,7 @@ INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LD = /usr/bin/ld
+LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
 LIBS = 
@@ -209,7 +209,7 @@ LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/massar/nDPI/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/bobo/nDPI/missing --run makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 NM = /usr/bin/nm -B
@@ -232,10 +232,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = strip
 VERSION = 1.4.0
-abs_builddir = /home/massar/nDPI/src/lib
-abs_srcdir = /home/massar/nDPI/src/lib
-abs_top_builddir = /home/massar/nDPI
-abs_top_srcdir = /home/massar/nDPI
+abs_builddir = /home/bobo/nDPI/src/lib
+abs_srcdir = /home/bobo/nDPI/src/lib
+abs_top_builddir = /home/bobo/nDPI
+abs_top_srcdir = /home/bobo/nDPI
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
@@ -245,26 +245,26 @@ am__quote =
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
 bindir = ${exec_prefix}/bin
-build = i686-pc-linux-gnu
+build = x86_64-unknown-linux-gnu
 build_alias = 
-build_cpu = i686
+build_cpu = x86_64
 build_os = linux-gnu
-build_vendor = pc
+build_vendor = unknown
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = i686-pc-linux-gnu
+host = x86_64-unknown-linux-gnu
 host_alias = 
-host_cpu = i686
+host_cpu = x86_64
 host_os = linux-gnu
-host_vendor = pc
+host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/massar/nDPI/install-sh
+install_sh = ${SHELL} /home/bobo/nDPI/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -412,7 +412,9 @@ libndpi_la_SOURCES = ndpi_main.c \
 			protocols/radius.c \
 			protocols/teamviewer.c \
 			protocols/lotus_notes.c \
-			protocols/gtp.c
+			protocols/gtp.c \
+			protocols/oracle.c\
+			protocols/ptt.c
 
 all: all-am
 
@@ -551,6 +553,7 @@ include ./$(DEPDIR)/libndpi_la-nfs.Plo
 include ./$(DEPDIR)/libndpi_la-non_tcp_udp.Plo
 include ./$(DEPDIR)/libndpi_la-ntp.Plo
 include ./$(DEPDIR)/libndpi_la-openft.Plo
+include ./$(DEPDIR)/libndpi_la-oracle.Plo
 include ./$(DEPDIR)/libndpi_la-oscar.Plo
 include ./$(DEPDIR)/libndpi_la-pando.Plo
 include ./$(DEPDIR)/libndpi_la-pcanywhere.Plo
@@ -559,6 +562,7 @@ include ./$(DEPDIR)/libndpi_la-postgres.Plo
 include ./$(DEPDIR)/libndpi_la-pplive.Plo
 include ./$(DEPDIR)/libndpi_la-ppstream.Plo
 include ./$(DEPDIR)/libndpi_la-pptp.Plo
+include ./$(DEPDIR)/libndpi_la-ptt.Plo
 include ./$(DEPDIR)/libndpi_la-qq.Plo
 include ./$(DEPDIR)/libndpi_la-quake.Plo
 include ./$(DEPDIR)/libndpi_la-radius.Plo
@@ -1399,6 +1403,20 @@ libndpi_la-gtp.lo: protocols/gtp.c
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libndpi_la-gtp.lo `test -f 'protocols/gtp.c' || echo '$(srcdir)/'`protocols/gtp.c
 
+libndpi_la-oracle.lo: protocols/oracle.c
+	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libndpi_la-oracle.lo -MD -MP -MF $(DEPDIR)/libndpi_la-oracle.Tpo -c -o libndpi_la-oracle.lo `test -f 'protocols/oracle.c' || echo '$(srcdir)/'`protocols/oracle.c
+	$(am__mv) $(DEPDIR)/libndpi_la-oracle.Tpo $(DEPDIR)/libndpi_la-oracle.Plo
+#	source='protocols/oracle.c' object='libndpi_la-oracle.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libndpi_la-oracle.lo `test -f 'protocols/oracle.c' || echo '$(srcdir)/'`protocols/oracle.c
+
+libndpi_la-ptt.lo: protocols/ptt.c
+	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libndpi_la-ptt.lo -MD -MP -MF $(DEPDIR)/libndpi_la-ptt.Tpo -c -o libndpi_la-ptt.lo `test -f 'protocols/ptt.c' || echo '$(srcdir)/'`protocols/ptt.c
+	$(am__mv) $(DEPDIR)/libndpi_la-ptt.Tpo $(DEPDIR)/libndpi_la-ptt.Plo
+#	source='protocols/ptt.c' object='libndpi_la-ptt.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libndpi_la-ptt.lo `test -f 'protocols/ptt.c' || echo '$(srcdir)/'`protocols/ptt.c
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -1610,7 +1628,6 @@ uninstall-am: uninstall-libLTLIBRARIES
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES
-
 
 # NTOP protocols are at the end
 

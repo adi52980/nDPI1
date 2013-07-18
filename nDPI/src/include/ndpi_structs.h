@@ -370,7 +370,10 @@ struct ndpi_flow_tcp_struct {
   u_int8_t teamviewer_stage;
 #endif
 }
-
+#ifdef NDPI_PROTOCOL_ORACLE
+#endif
+#ifdef NDPI_PROTOCOL_PTT
+#endif
 /* ************************************************** */ 
 
 #if !defined(WIN32)

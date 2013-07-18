@@ -911,6 +911,14 @@ static void ndpi_init_protocol_defaults(struct ndpi_detection_module_struct *ndp
   ndpi_set_proto_defaults(ndpi_mod, NDPI_PROTOCOL_REMOTE_SCAN, "RemoteScan",
 			  ndpi_build_default_ports(ports_a, 6077, 0, 0, 0, 0) /* TCP */, 
 			  ndpi_build_default_ports(ports_b, 6078, 0, 0, 0, 0) /* UDP */); /* Missing dissector: port based only */
+ ndpi_set_proto_defaults(ndpi_mod, NDPI_PROTOCOL_ORACLE, "Oracle",
+                           ndpi_build_default_ports(ports_a, 1521, 0, 0, 0, 0) /* TCP */,
+                          ndpi_build_default_ports(ports_b, 0, 0, 0, 0, 0) /* UDP */);
+ndpi_set_proto_defaults(ndpi_mod, NDPI_PROTOCOL_PTT, "Ptt",
+                            ndpi_build_default_ports(ports_a, 0, 0, 0, 0, 0) /* TCP */,
+                            ndpi_build_default_ports(ports_b, 0, 0, 0, 0, 0) /* UDP */);
+
+  
 
   for(i=0; i<_ndpi_num_supported_protocols; i++) {
     if(ndpi_mod->proto_defaults[i].protoName == NULL) {
@@ -2797,7 +2805,32 @@ void ndpi_set_protocol_detection_bitmask2(struct ndpi_detection_module_struct *n
     a++;
   }
 #endif
-
+#ifdef NDPI_PROTOCOL_ORACLE
+   if (NDPI_COMPARE_PROTOCOL_TO_BITMASK(*detection_bitmask, NDPI_PROTOCOL_ORACLE) != 0) {
+     ndpi_struct->callback_buffer[a].func = ndpi_search_oracle;
+     ndpi_struct->callback_buffer[a].ndpi_selection_bitmask =
+       NDPI_SELECTION_BITMASK_PROTOCOL_V4_V6_TCP_WITH_PAYLOAD_WITHOUT_RETRANSMISSION;
+ 
+     NDPI_SAVE_AS_BITMASK(ndpi_struct->callback_buffer[a].detection_bitmask, NDPI_PROTOCOL_UNKNOWN);
+     NDPI_ADD_PROTOCOL_TO_BITMASK(ndpi_struct->callback_buffer[a].detection_bitmask, NDPI_PROTOCOL_ORACLE);
+ 
+     NDPI_SAVE_AS_BITMASK(ndpi_struct->callback_buffer[a].excluded_protocol_bitmask, NDPI_PROTOCOL_ORACLE);
+     a++;
+   }
+#endif
+#ifdef NDPI_PROTOCOL_PTT
+   if (NDPI_COMPARE_PROTOCOL_TO_BITMASK(*detection_bitmask, NDPI_PROTOCOL_PTT) != 0) {
+      ndpi_struct->callback_buffer[a].func = ndpi_search_ptt;
+      ndpi_struct->callback_buffer[a].ndpi_selection_bitmask =
+        NDPI_SELECTION_BITMASK_PROTOCOL_V4_V6_TCP_WITH_PAYLOAD_WITHOUT_RETRANSMISSION;
+ 
+      NDPI_SAVE_AS_BITMASK(ndpi_struct->callback_buffer[a].detection_bitmask, NDPI_PROTOCOL_UNKNOWN);
+      NDPI_ADD_PROTOCOL_TO_BITMASK(ndpi_struct->callback_buffer[a].detection_bitmask, NDPI_PROTOCOL_PTT);
+ 
+      NDPI_SAVE_AS_BITMASK(ndpi_struct->callback_buffer[a].excluded_protocol_bitmask, NDPI_PROTOCOL_PTT);
+      a++;
+    }
+#endif
   ndpi_struct->callback_buffer_size = a;
 
   NDPI_LOG(NDPI_PROTOCOL_UNKNOWN, ndpi_struct, NDPI_LOG_DEBUG,

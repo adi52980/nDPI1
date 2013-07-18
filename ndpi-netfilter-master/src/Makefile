@@ -118,8 +118,9 @@ xt_ndpi-y := main.o ${NDPI_SRC}/lib/ndpi_main.o \
 		${NDPI_PRO}/lotus_notes.o \
                 ${NDPI_PRO}/xdmcp.o \
                 ${NDPI_PRO}/yahoo.o \
-                ${NDPI_PRO}/zattoo.o
-
+                ${NDPI_PRO}/zattoo.o\
+		${NDPI_PRO}/oracle.o\
+		${NDPI_PRO}/ptt.o
 all:
 	if test -d ${NDPI_SRC}; then \
 		cp ${NDPI_PATH2}/* ${NDPI_SRC} -R; \

@@ -24,7 +24,7 @@
 
 
 #include "ndpi_protocols.h"
-
+#include <linux/kernel.h>
 #ifdef NDPI_PROTOCOL_HTTP
 
 static void ndpi_int_http_add_connection(struct ndpi_detection_module_struct *ndpi_struct, 
@@ -799,7 +799,7 @@ void ndpi_search_http_tcp(struct ndpi_detection_module_struct *ndpi_struct, stru
   //      struct ndpi_id_struct         *dst=ndpi_struct->dst;
 
   u_int16_t filename_start;
-
+  printk("printk search http");
   NDPI_LOG(NDPI_PROTOCOL_HTTP, ndpi_struct, NDPI_LOG_DEBUG, "search http\n");
 
   /* set client-server_direction */

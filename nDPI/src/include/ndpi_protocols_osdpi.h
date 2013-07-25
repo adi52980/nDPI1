@@ -202,7 +202,8 @@ typedef struct {
 #define NDPI_PROTOCOL_LLMNR					154
 #define NDPI_PROTOCOL_REMOTE_SCAN				155
 #define NDPI_PROTOCOL_ORACLE					156
-#define  NDPI_PROTOCOL_PTT                                      157
+#define NDPI_PROTOCOL_PTT                                       157
+#define NDPI_PROTOCOL_JUSTIN_TWITCH				158
 /* NOTE: REMEMBER TO UPDATE NDPI_PROTOCOL_LONG_STRING / NDPI_PROTOCOL_SHORT_STRING */
 
 #define NDPI_PROTOCOL_LONG_STRING "Unknown","FTP","POP","SMTP","IMAP","DNS","IPP","HTTP","MDNS","NTP","NETBIOS",\
@@ -220,7 +221,7 @@ typedef struct {
 "DropBox","Gmail","Google_Maps","YouTube","Skype","Google","DCE_RPC","NetFlow_IPFIX","sFlow","HTTP_Connect_SSL_over_HTTP",\
 "HTTP_Proxy","Citrix","Netflix","LastFM","Grooveshark","SkyFile_Prepaid","SkyFile_Rudics","SkyFile_Postpaid","CitrixOnline","Apple_iMessage_FaceTime",\
 "Webex","WhatsApp","Apple_iCloud","Viber","Apple_iTunes","Radius","Windows_Update","TeamViewer","Tuenti","Lotus_Notes",\
-"SAP","GTP","uPnP","LLMNR","Remote_Scan","Oracle","Ptt"
+"SAP","GTP","uPnP","LLMNR","Remote_Scan","Oracle","Ptt","Justin_Twtich"
 
 #define NDPI_PROTOCOL_SHORT_STRING "ukn","ftp","pop","smtp","imap","dns","ipp","http","mdns","ntp","netbios",\
 "nfs","ssdp","bgp","snmp","xdmcp","smb","syslog","dhcp","postgres","mysql",\
@@ -237,10 +238,10 @@ typedef struct {
 "dropbox","gmail","gmaps","youtube","skype","google","dcerpc","netflow","sflow","httpconnect",\
 "httpproxy","citrix","netflix","lastfm","grooveshark","skyfileprepaid","skyfilerudics","skyfilepostpaid","citrixonline","apple",\
 "webex","wgatsapp","appleicloud","viber","appleitunes","radius","windowsupdate","teamviewer","tuenti","lotusnotes",\
-"sap","gtp","upnp","llmnr","remotescan","oracle","ptt"
+"sap","gtp","upnp","llmnr","remotescan","oracle","ptt","justintwitch"
 
 
-#define NDPI_LAST_IMPLEMENTED_PROTOCOL                          157
+#define NDPI_LAST_IMPLEMENTED_PROTOCOL                          158
 
 #define NDPI_MAX_SUPPORTED_PROTOCOLS (NDPI_LAST_IMPLEMENTED_PROTOCOL + 1)
 #define NDPI_MAX_NUM_CUSTOM_PROTOCOLS                            32

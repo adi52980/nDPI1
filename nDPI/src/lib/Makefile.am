@@ -131,5 +131,6 @@ libndpi_la_SOURCES = ndpi_main.c \
 			protocols/lotus_notes.c \
 			protocols/gtp.c \
 			protocols/oracle.c\
-			protocols/ptt.c
+			protocols/ptt.c\
+			protocols/justin_twitch.c
 # NTOP protocols are at the end

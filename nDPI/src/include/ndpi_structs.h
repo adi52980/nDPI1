@@ -374,6 +374,8 @@ struct ndpi_flow_tcp_struct {
 #endif
 #ifdef NDPI_PROTOCOL_PTT
 #endif
+#ifdef NDPI_PROTOCOL_JUSTIN_TWITCH
+#endif
 /* ************************************************** */ 
 
 #if !defined(WIN32)

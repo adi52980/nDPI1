@@ -336,6 +336,6 @@ void ndpi_search_lotus_notes(struct ndpi_detection_module_struct *ndpi_struct, s
 void ndpi_search_gtp(struct ndpi_detection_module_struct *ndpi_struct, struct ndpi_flow_struct *flow);
 void ndpi_search_oracle(struct ndpi_detection_module_struct *ndpi_struct, struct ndpi_flow_struct *flow);
 void ndpi_search_ptt(struct ndpi_detection_module_struct *ndpi_struct, struct ndpi_flow_struct *flow);
-
+void ndpi_search_justin_twitch(struct ndpi_detection_module_struct *ndpi_struct, struct ndpi_flow_struct *flow);
 
 #endif							/* __NDPI_PROTOCOLS_INCLUDE_FILE__ */

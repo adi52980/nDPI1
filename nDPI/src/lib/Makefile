@@ -142,7 +142,8 @@ am_libndpi_la_OBJECTS = libndpi_la-ndpi_main.lo libndpi_la-afp.lo \
 	libndpi_la-citrix.lo libndpi_la-dcerpc.lo \
 	libndpi_la-netflow.lo libndpi_la-sflow.lo libndpi_la-radius.lo \
 	libndpi_la-teamviewer.lo libndpi_la-lotus_notes.lo \
-	libndpi_la-gtp.lo libndpi_la-oracle.lo libndpi_la-ptt.lo
+	libndpi_la-gtp.lo libndpi_la-oracle.lo libndpi_la-ptt.lo \
+	libndpi_la-justin_twitch.lo
 libndpi_la_OBJECTS = $(am_libndpi_la_OBJECTS)
 libndpi_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -414,7 +415,8 @@ libndpi_la_SOURCES = ndpi_main.c \
 			protocols/lotus_notes.c \
 			protocols/gtp.c \
 			protocols/oracle.c\
-			protocols/ptt.c
+			protocols/ptt.c\
+			protocols/justin_twitch.c
 
 all: all-am
 
@@ -530,6 +532,7 @@ include ./$(DEPDIR)/libndpi_la-imesh.Plo
 include ./$(DEPDIR)/libndpi_la-ipp.Plo
 include ./$(DEPDIR)/libndpi_la-irc.Plo
 include ./$(DEPDIR)/libndpi_la-jabber.Plo
+include ./$(DEPDIR)/libndpi_la-justin_twitch.Plo
 include ./$(DEPDIR)/libndpi_la-kerberos.Plo
 include ./$(DEPDIR)/libndpi_la-kontiki.Plo
 include ./$(DEPDIR)/libndpi_la-ldap.Plo
@@ -1416,6 +1419,13 @@ libndpi_la-ptt.lo: protocols/ptt.c
 #	source='protocols/ptt.c' object='libndpi_la-ptt.lo' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libndpi_la-ptt.lo `test -f 'protocols/ptt.c' || echo '$(srcdir)/'`protocols/ptt.c
+
+libndpi_la-justin_twitch.lo: protocols/justin_twitch.c
+	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libndpi_la-justin_twitch.lo -MD -MP -MF $(DEPDIR)/libndpi_la-justin_twitch.Tpo -c -o libndpi_la-justin_twitch.lo `test -f 'protocols/justin_twitch.c' || echo '$(srcdir)/'`protocols/justin_twitch.c
+	$(am__mv) $(DEPDIR)/libndpi_la-justin_twitch.Tpo $(DEPDIR)/libndpi_la-justin_twitch.Plo
+#	source='protocols/justin_twitch.c' object='libndpi_la-justin_twitch.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libndpi_la-justin_twitch.lo `test -f 'protocols/justin_twitch.c' || echo '$(srcdir)/'`protocols/justin_twitch.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

@@ -61,4 +61,4 @@ __attribute__((section(".modinfo"))) =
 "depends=nf_conntrack,x_tables";
 
 
-MODULE_INFO(srcversion, "1C5F665626EFA4E21C96973");
+MODULE_INFO(srcversion, "FFDB1FB4B7B23E8C5B1ADA8");

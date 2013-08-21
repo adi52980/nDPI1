@@ -369,13 +369,16 @@ struct ndpi_flow_tcp_struct {
 #ifdef NDPI_PROTOCOL_TEAMVIEWER
   u_int8_t teamviewer_stage;
 #endif
-}
 #ifdef NDPI_PROTOCOL_ORACLE
 #endif
 #ifdef NDPI_PROTOCOL_PTT
 #endif
 #ifdef NDPI_PROTOCOL_JUSTIN_TWITCH
+   u_int32_t justin_twitch_stage;
 #endif
+
+}
+
 /* ************************************************** */ 
 
 #if !defined(WIN32)

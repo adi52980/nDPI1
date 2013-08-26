@@ -143,7 +143,7 @@ am_libndpi_la_OBJECTS = libndpi_la-ndpi_main.lo libndpi_la-afp.lo \
 	libndpi_la-netflow.lo libndpi_la-sflow.lo libndpi_la-radius.lo \
 	libndpi_la-teamviewer.lo libndpi_la-lotus_notes.lo \
 	libndpi_la-gtp.lo libndpi_la-oracle.lo libndpi_la-ptt.lo \
-	libndpi_la-justin_twitch.lo
+	libndpi_la-justin_twitch.lo libndpi_la-starcraft2.lo
 libndpi_la_OBJECTS = $(am_libndpi_la_OBJECTS)
 libndpi_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -416,7 +416,8 @@ libndpi_la_SOURCES = ndpi_main.c \
 			protocols/gtp.c \
 			protocols/oracle.c\
 			protocols/ptt.c\
-			protocols/justin_twitch.c
+			protocols/justin_twitch.c\
+			protocols/starcraft2.c
 
 all: all-am
 
@@ -585,6 +586,7 @@ include ./$(DEPDIR)/libndpi_la-soulseek.Plo
 include ./$(DEPDIR)/libndpi_la-ssdp.Plo
 include ./$(DEPDIR)/libndpi_la-ssh.Plo
 include ./$(DEPDIR)/libndpi_la-ssl.Plo
+include ./$(DEPDIR)/libndpi_la-starcraft2.Plo
 include ./$(DEPDIR)/libndpi_la-stealthnet.Plo
 include ./$(DEPDIR)/libndpi_la-steam.Plo
 include ./$(DEPDIR)/libndpi_la-stun.Plo
@@ -1426,6 +1428,13 @@ libndpi_la-justin_twitch.lo: protocols/justin_twitch.c
 #	source='protocols/justin_twitch.c' object='libndpi_la-justin_twitch.lo' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libndpi_la-justin_twitch.lo `test -f 'protocols/justin_twitch.c' || echo '$(srcdir)/'`protocols/justin_twitch.c
+
+libndpi_la-starcraft2.lo: protocols/starcraft2.c
+	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libndpi_la-starcraft2.lo -MD -MP -MF $(DEPDIR)/libndpi_la-starcraft2.Tpo -c -o libndpi_la-starcraft2.lo `test -f 'protocols/starcraft2.c' || echo '$(srcdir)/'`protocols/starcraft2.c
+	$(am__mv) $(DEPDIR)/libndpi_la-starcraft2.Tpo $(DEPDIR)/libndpi_la-starcraft2.Plo
+#	source='protocols/starcraft2.c' object='libndpi_la-starcraft2.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libndpi_la-starcraft2.lo `test -f 'protocols/starcraft2.c' || echo '$(srcdir)/'`protocols/starcraft2.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

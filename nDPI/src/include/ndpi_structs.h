@@ -376,7 +376,8 @@ struct ndpi_flow_tcp_struct {
 #ifdef NDPI_PROTOCOL_JUSTIN_TWITCH
    u_int32_t justin_twitch_stage;
 #endif
-
+#ifdef NDPI_PROTOCOL_STARCRAFT2
+#endif
 }
 
 /* ************************************************** */ 

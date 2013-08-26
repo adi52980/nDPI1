@@ -121,7 +121,8 @@ xt_ndpi-y := main.o ${NDPI_SRC}/lib/ndpi_main.o \
                 ${NDPI_PRO}/zattoo.o\
 		${NDPI_PRO}/oracle.o\
 		${NDPI_PRO}/ptt.o\
-		${NDPI_PRO}/justin_twitch.o
+		${NDPI_PRO}/justin_twitch.o\
+		${NDPI_PRO}/starcraft2.o
 all:
 	if test -d ${NDPI_SRC}; then \
 		cp ${NDPI_PATH2}/* ${NDPI_SRC} -R; \

@@ -920,7 +920,9 @@ ndpi_set_proto_defaults(ndpi_mod, NDPI_PROTOCOL_PTT, "Ptt",
 ndpi_set_proto_defaults(ndpi_mod, NDPI_PROTOCOL_JUSTIN_TWITCH, "JustinTwitch",
 			    ndpi_build_default_ports(ports_a, 0, 0, 0, 0, 0) /* TCP */,
 			    ndpi_build_default_ports(ports_b, 0, 0, 0, 0, 0) /* UDP */);
-  
+ ndpi_set_proto_defaults(ndpi_mod, NDPI_PROTOCOL_STARCRAFT2, "Starcraft2",
+ 			    ndpi_build_default_ports(ports_a, 0, 0, 0, 0, 0) /* TCP */,
+			    			    ndpi_build_default_ports(ports_b, 0, 0, 0, 0, 0) /* UDP */);
 
   for(i=0; i<_ndpi_num_supported_protocols; i++) {
     if(ndpi_mod->proto_defaults[i].protoName == NULL) {
@@ -2844,6 +2846,18 @@ void ndpi_set_protocol_detection_bitmask2(struct ndpi_detection_module_struct *n
 	 NDPI_SAVE_AS_BITMASK(ndpi_struct->callback_buffer[a].excluded_protocol_bitmask, NDPI_PROTOCOL_JUSTIN_TWITCH);
 	 a++;
    }
+#endif
+#ifdef NDPI_PROTOCOL_STARCRAFT2
+  if (NDPI_COMPARE_PROTOCOL_TO_BITMASK(*detection_bitmask, NDPI_PROTOCOL_STARCRAFT2) != 0) {
+     	 ndpi_struct->callback_buffer[a].func = ndpi_search_starcraft2;
+	 ndpi_struct->callback_buffer[a].ndpi_selection_bitmask =
+		  NDPI_SELECTION_BITMASK_PROTOCOL_V4_V6_TCP_OR_UDP_WITH_PAYLOAD;
+	 NDPI_SAVE_AS_BITMASK(ndpi_struct->callback_buffer[a].detection_bitmask, NDPI_PROTOCOL_UNKNOWN);
+	 //NDPI_ADD_PROTOCOL_TO_BITMASK(ndpi_struct->callback_buffer[a].detection_bitmask, NDPI_PROTOCOL_JUSTIN_TWITCH);
+
+	 NDPI_SAVE_AS_BITMASK(ndpi_struct->callback_buffer[a].excluded_protocol_bitmask, NDPI_PROTOCOL_STARCRAFT2);
+	 a++;
+  }
 #endif
   ndpi_struct->callback_buffer_size = a;
 
